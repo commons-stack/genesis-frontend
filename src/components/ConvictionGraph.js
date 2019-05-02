@@ -2,13 +2,9 @@ import React from 'react';
 import { Line } from "react-chartjs-2";
 import convictionLib from '../math/convictionLib';
 
-const globalParameters = {
-    alpha: 90,
-    totalTime: 100
-};
-
 let d = 65;
 
+//TODO: What is this for?
 const around = (offset, range) => {
     d += 7;
     return offset + ((d * 47) & (range || 60));
@@ -46,18 +42,22 @@ const convictions = [
 ];
 
 const ConvictionGraph = () => {
-    const [plot, setPlot] = React.useState(null);
+    const [convictionDataPlots, setConvictionDataPlots] = React.useState(null);
 
-    const threshold = 100000;
+    const convictionThreshold = 100000;
 
-    const makeColor = (i) => {
+    const globalParameters = {
+        alpha: 90,
+        totalTime: 100
+    };
+
+    const generateConvictionColor = (i) => {
         const r = (i * 139) % 255;
         const g = (i * 251) % 255;
         const b = (i * 43) % 255;
         return `rgba(${r},${g},${b},0.3)`;
     };
-
-    const generateDataSets = (stakeHistory) => convictions.map((user, userindex) => {
+    const generateConvictionDataSets = (stakeHistory) => convictions.map((user, userIndex) => {
         const a = globalParameters.alpha / 100;
         const D = 10;
         let y0 = 0;
@@ -69,9 +69,8 @@ const ConvictionGraph = () => {
         let stakeIndex = 0;
 
 
-        for (let t = 0; t < globalParameters.totalTime; t++) {
+        for (let time = 0; time < globalParameters.totalTime; time++) {
             // get timeline events for this CV
-
             y1 = convictionLib.getConviction(a, D, y0, x, localTime);
 
             data.push(y1);
@@ -80,7 +79,7 @@ const ConvictionGraph = () => {
             if (
                 user.stakes &&
                 user.stakes.length > stakeIndex &&
-                user.stakes[stakeIndex].time <= t
+                user.stakes[stakeIndex].time <= time
             ) {
                 let action = user.stakes[stakeIndex];
                 stakeIndex++;
@@ -90,8 +89,8 @@ const ConvictionGraph = () => {
 
                 // descriptive history
                 stakeHistory.push({
-                    t: t,
-                    desc: `${user.name} changes stake to ${action.tokensStaked}`
+                    time: time,
+                    description: `${user.name} changes stake to ${action.tokensStaked}`
                 });
             }
 
@@ -100,13 +99,12 @@ const ConvictionGraph = () => {
         return {
             label: user.name,
             fill: false,
-            // backgroundColor: "rgba(75,192,192,0.4)",
-            borderColor: makeColor(userindex),
+            borderColor: generateConvictionColor(userIndex),
             data: data
         };
     });
 
-    const recalc = () => {
+    const calculateConvictionPlotData = () => {
         let labels = [];
         for (let t = 0; t < globalParameters.totalTime; t++) {
             labels.push(t);
@@ -114,55 +112,55 @@ const ConvictionGraph = () => {
 
         let stakeHistory = [];
 
-        let dataSets = generateDataSets(stakeHistory);
+        let convictionDataSets = generateConvictionDataSets(stakeHistory);
         // add a dataset with the total conviction
         let totalConvictionData = [];
         let triggerValues = [];
-        let passed = false;
-        for (let t = 0; t < globalParameters.totalTime; t++) {
-            let total = dataSets.reduce((accumulator, currentValue) => {
-                return accumulator + currentValue.data[t];
+        let convictionThresholdPassed = false;
+        for (let time = 0; time < globalParameters.totalTime; time++) {
+            let totalConviction = convictionDataSets.reduce((accumulator, currentValue) => {
+                return accumulator + currentValue.data[time];
             }, 0);
-            totalConvictionData.push(total);
-            triggerValues.push(threshold);
+            totalConvictionData.push(totalConviction);
+            triggerValues.push(convictionThreshold);
 
-            if (total > threshold && !passed) {
-                passed = true;
+            if (totalConviction > convictionThreshold && !convictionThresholdPassed) {
+                convictionThresholdPassed = true;
                 stakeHistory.push({
-                    t: t,
-                    desc: `Proposal approved!`
+                    time: time,
+                    description: `Proposal approved!`
                 });
             }
         }
-        dataSets.push({
+        convictionDataSets.push({
             label: "trigger value",
             borderColor: "rgba(75,255,75,1)",
             data: triggerValues
         });
-        dataSets.push({
+        convictionDataSets.push({
             label: "total",
             borderColor: "rgba(75,192,192,1)",
             data: totalConvictionData
         });
 
         stakeHistory.sort((a, b) => {
-            return a.t - b.t;
+            return a.time - b.time;
         });
 
-        setPlot({
+        setConvictionDataPlots({
             labels: labels,
-            datasets: dataSets
+            datasets: convictionDataSets
         });
+        //TODO: Add in timeline
         // this.setState({
         //     timeline: stakeHistory
         // });
     };
 
-    React.useEffect(() => recalc());
-    // recalc();
+    React.useEffect(() => calculateConvictionPlotData());
     return (
         <div>
-            {plot && <Line data={plot} />}
+            {convictionDataPlots && <Line data={convictionDataPlots} />}
         </div>
     );
 };
