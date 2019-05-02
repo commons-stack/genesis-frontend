@@ -15,3 +15,8 @@ Some pointers that we used in our initial discussions on making this iteration
 - https://www.styled-components.com/
 
 
+## Communications
+
+Whenever we work on the project - we'll hang around in this room :
+
+- https://meet.jit.si/the-commons
