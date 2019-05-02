@@ -92,7 +92,7 @@ const IssuesTable = () => {
                             //     this.startVote(issue.url);
                             // }}
                             >
-                            Signal
+                            Support
                             </button>
                         </td>
                     </tr>);
