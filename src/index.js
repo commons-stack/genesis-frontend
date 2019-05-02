@@ -2,16 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import "./assets/styles/main.scss";
+import IssuesList from './components/IssuesList';
 
-class Welcome extends React.Component {
-    render () {
-        return (
-            <div className="buttons">
-                <a className="button is-primary">Primary</a>
-                <a className="button is-link">Link</a>
-            </div>
-        );
-    }
-}
+const Index = () => {
+    return (
+        <div className="container">
+            <h1 className="title">Issue List</h1>
+            <IssuesList/>
+        </div>
+    );
+};
 
-ReactDOM.render(<Welcome />, document.getElementById("root"));
+ReactDOM.render(<Index />, document.getElementById("root"));
