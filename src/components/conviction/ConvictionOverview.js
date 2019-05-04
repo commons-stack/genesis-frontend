@@ -1,48 +1,11 @@
 import React from 'react';
-import { Line } from "react-chartjs-2";
-import convictionLib from '../math/convictionLib';
+import convictionLib from '../../math/convictionLib';
+import ConvictionGraph from './ConvictionGraph';
+import ConvictionTimeline from './ConvictionTimeline';
 
-let d = 65;
-
-//TODO: What is this for?
-const around = (offset, range) => {
-    d += 7;
-    return offset + ((d * 47) & (range || 60));
-};
-
-const convictions = [
-    {
-        name: "Philadelphia DAO",
-        stakes: [
-            { time: around(0), tokensStaked: around(2000, 300) },
-            { time: around(50), tokensStaked: around(0, 300) }
-        ]
-    },
-    {
-        name: "Aqua Array",
-        stakes: [
-            { time: around(20), tokensStaked: around(333, 300) },
-            { time: around(65), tokensStaked: around(6000, 5000) }
-        ]
-    },
-    {
-        name: "Global Water Commons",
-        stakes: [
-            { time: around(30), tokensStaked: around(1000, 500) },
-            { time: around(80), tokensStaked: around(7000, 4500) }
-        ]
-    },
-    {
-        name: "Autofactory Factory",
-        stakes: [
-            { time: around(0), tokensStaked: 1100 },
-            { time: around(30), tokensStaked: 7000 }
-        ]
-    }
-];
-
-const ConvictionGraph = () => {
-    const [convictionDataPlots, setConvictionDataPlots] = React.useState(null);
+const ConvictionOverview = ({ issue, convictionList }) => {
+    const [convictionData, setConvictionData] = React.useState(null);
+    const [convictionTimeline, setConvictionTimeline] = React.useState(null);
 
     const convictionThreshold = 100000;
 
@@ -57,7 +20,8 @@ const ConvictionGraph = () => {
         const b = (i * 43) % 255;
         return `rgba(${r},${g},${b},0.3)`;
     };
-    const generateConvictionDataSets = (stakeHistory) => convictions.map((user, userIndex) => {
+
+    const generateConvictionDataSets = (stakeHistory) => convictionList.map((user, userIndex) => {
         const a = globalParameters.alpha / 100;
         const D = 10;
         let y0 = 0;
@@ -147,22 +111,23 @@ const ConvictionGraph = () => {
             return a.time - b.time;
         });
 
-        setConvictionDataPlots({
+        setConvictionTimeline(stakeHistory);
+        setConvictionData({
             labels: labels,
             datasets: convictionDataSets
         });
-        //TODO: Add in timeline
-        // this.setState({
-        //     timeline: stakeHistory
-        // });
     };
 
     React.useEffect(() => calculateConvictionPlotData());
     return (
         <div>
-            {convictionDataPlots && <Line data={convictionDataPlots} />}
+            {issue && <>
+                <h1 className="title">{issue.title}</h1>
+                <ConvictionGraph convictionData={convictionData}/>
+                <ConvictionTimeline timeline={convictionTimeline}/>
+            </>}
         </div>
     );
 };
 
-export default ConvictionGraph;
+export default ConvictionOverview;

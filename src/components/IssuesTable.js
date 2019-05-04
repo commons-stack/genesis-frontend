@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const IssuesTable = () => {
+const IssuesTable = ({ onSelectIssue }) => {
     const [issues, setIssues] = useState([]);
 
     useEffect(() => {
@@ -13,17 +13,17 @@ const IssuesTable = () => {
                     .map(issue => {
                         // parse issue body
                         const voteData = issue.body.split(" ");
-                        let a = 0;
-                        let d = "DAI";
+                        let amount = 0;
+                        let denomination = "DAI";
                         if (voteData.length === 3 && voteData[0] === "voteonfunding") {
-                            a = parseInt(voteData[1], 10);
-                            d = voteData[2];
+                            amount = parseInt(voteData[1], 10);
+                            denomination = voteData[2];
                         }
 
                         return {
                             ...issue,
-                            amount: a,
-                            denomination: d
+                            amount: amount,
+                            denomination: denomination
                         };
                     })
                     .reduce((accum, issue) => {
@@ -37,10 +37,6 @@ const IssuesTable = () => {
             })
             .catch(error => {});
     });
-
-    const showConvictionGraph = () => {
-        console.log("Show");
-    };
 
     return (
         <table className="table is-bordered is-hoverable is is-striped is-hoverable is-fullwidth">
@@ -57,35 +53,20 @@ const IssuesTable = () => {
             </thead>
             <tbody>
                 {issues.map(issue => {
-                    return (<tr key={issue.title}>
+                    return (<tr key={issue.title} onClick={() => onSelectIssue(issue)}>
                         <td>
                             {issue.title}
                         </td>
                         <td>
                             {issue.amount} {issue.denomination}
                         </td>
-                        <td onClick={showConvictionGraph}>
-                        THE CHART
-                            {/*<LineChart*/}
-                            {/*width={400}*/}
-                            {/*height={150}*/}
-                            {/*data={data}*/}
-                            {/*margin={{ top: 5, right: 20, bottom: 5, left: 0 }}*/}
-                            {/*>*/}
-                            {/*<Line type="monotone" dataKey="tokens" stroke="#000" />*/}
-                            {/*<Line type="monotone" dataKey="conviction" stroke="#8884d8" />*/}
-                            {/*<Line type="monotone" dataKey="total" stroke="#82ca9d" />*/}
-                            {/*<CartesianGrid stroke="#ccc" />*/}
-                            {/*<XAxis dataKey="name" />*/}
-                            {/*<YAxis />*/}
-                            {/*<Tooltip />*/}
-                            {/*</LineChart>*/}
+                        <td>
+                            e.g. 90%
                         </td>
                         <td>holding</td>
                         <td>holding</td>
 
                         <td>
-                            {/*<TextInput type="number" defaultValue="0" />*/}
                             <button
                             // mode="outline"
                             // onClick={e => {
