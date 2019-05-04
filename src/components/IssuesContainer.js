@@ -48,7 +48,7 @@ const IssuesContainer = () => {
     return (
         <div>
             <h1 className="title">Issue List</h1>
-            <IssuesTable onSelectIssue={setSelectedIssue}/>
+            <IssuesTable selectedIssue={selectedIssue} onSelectIssue={setSelectedIssue}/>
             <ConvictionOverview issue={selectedIssue} convictionList={convictions}/>
         </div>
     );

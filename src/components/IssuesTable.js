@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const IssuesTable = ({ onSelectIssue }) => {
+const IssuesTable = ({ onSelectIssue, selectedIssue }) => {
     const [issues, setIssues] = useState([]);
 
     useEffect(() => {
@@ -53,7 +53,8 @@ const IssuesTable = ({ onSelectIssue }) => {
             </thead>
             <tbody>
                 {issues.map(issue => {
-                    return (<tr key={issue.title} onClick={() => onSelectIssue(issue)}>
+                    return (<tr className={selectedIssue && issue.title === selectedIssue.title ? "is-selected" : ""}
+                        key={issue.title} onClick={() => onSelectIssue(issue)}>
                         <td>
                             {issue.title}
                         </td>
