@@ -6,16 +6,16 @@ const IssuesTable = ({ onSelectIssue, selectedIssue }) => {
 
     useEffect(() => {
         axios
-            .get(`https://api.github.com/repos/gitviction/vicdao/issues`)
+            .get('https://api.github.com/repos/gitviction/vicdao/issues')
             .then(res => {
                 // debugger;
                 const githubIssues = res.data
                     .map(issue => {
                         // parse issue body
-                        const voteData = issue.body.split(" ");
+                        const voteData = issue.body.split(' ');
                         let amount = 0;
-                        let denomination = "DAI";
-                        if (voteData.length === 3 && voteData[0] === "voteonfunding") {
+                        let denomination = 'DAI';
+                        if (voteData.length === 3 && voteData[0] === 'voteonfunding') {
                             amount = parseInt(voteData[1], 10);
                             denomination = voteData[2];
                         }
@@ -48,38 +48,35 @@ const IssuesTable = ({ onSelectIssue, selectedIssue }) => {
                     <th>Countdown</th>
                     <th>All Tokens</th>
                     <th>Your Tokens</th>
-
                 </tr>
             </thead>
             <tbody>
                 {issues.map(issue => {
-                    return (<tr className={selectedIssue && issue.title === selectedIssue.title ? "is-selected" : ""}
-                        key={issue.title} onClick={() => onSelectIssue(issue)}>
-                        <td>
-                            {issue.title}
-                        </td>
-                        <td>
-                            {issue.amount} {issue.denomination}
-                        </td>
-                        <td>
-                            e.g. 90%
-                        </td>
-                        <td>holding</td>
-                        <td>holding</td>
+                    return (
+                        <tr
+                            className={
+                                selectedIssue && issue.title === selectedIssue.title ?
+                                    'is-selected' : ''
+                            }
+                            key={issue.title}
+                            onClick={() => onSelectIssue(issue)}
+                        >
+                            <td>{issue.title}</td>
+                            <td>
+                                {issue.amount} {issue.denomination}
+                            </td>
+                            <td>e.g. 90%</td>
+                            <td>holding</td>
+                            <td>holding</td>
 
-                        <td>
-                            <button
-                            // mode="outline"
-                            // onClick={e => {
-                            //     this.startVote(issue.url);
-                            // }}
-                            >
-                            Support
-                            </button>
-                        </td>
-                    </tr>);
+                            <td>
+                                <button >
+                                Support
+                                </button>
+                            </td>
+                        </tr>
+                    );
                 })}
-
             </tbody>
         </table>
     );
