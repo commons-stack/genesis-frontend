@@ -1,10 +1,8 @@
 import React from 'react';
 import { ethers } from 'ethers';
 
-const Wallet = ({ }) => {
-    const [autoSign, setAutoSign] = React.useState(
-        localStorage.getItem('ethwallet_autosign') || false);
-
+// Implements the wallet & its storage in localstorage
+const Wallet = ({ onWalletAvailable, autoSign }) => {
     const [wallet] = React.useState(
         (localStorage.getItem('ethwallet') &&
             JSON.parse(localStorage.getItem('ethwallet'))) ||
@@ -12,25 +10,20 @@ const Wallet = ({ }) => {
     );
 
     React.useEffect(() => {
+        onWalletAvailable(wallet);
         localStorage.setItem('ethwallet', JSON.stringify(wallet));
     }, [wallet]);
 
     React.useEffect(() => {
-        localStorage.setItem('ethwallet_autosign', autoSign);
+        // what needs to be done here ?
     }, [autoSign]);
 
-    //  const onChange = event => setwallet(event.target.value);
+    // const queryFaucet = () => {
+    //     // TODO
+    // };
 
-    return (
-        <div>
-            <h1 className="title">Your wallet</h1>
-            <pre>{JSON.stringify(wallet.signingKey.address, null, 2)}</pre>
-            <label className="checkbox">
-                <input defaultChecked={autoSign} type="checkbox" onChange={(e) => { setAutoSign(e.target.checked); }} />
-                auto-sign transactions {autoSign.toString()}
-            </label>
-        </div>
-    );
+    //  const onChange = event => setwallet(event.target.value);
+    return (null);
 };
 
 export default Wallet;
