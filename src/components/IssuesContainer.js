@@ -2,9 +2,8 @@ import React from 'react';
 import IssuesTable from './IssuesTable';
 import ConvictionOverview from './conviction/ConvictionOverview';
 
+// generate some value within (offset,range + offset)
 let d = 65;
-
-// TODO: What is this for?
 const around = (offset, range) => {
     d += 7;
     return offset + ((d * 47) & (range || 60));
@@ -47,6 +46,7 @@ const IssuesContainer = () => {
     return (
         <div>
             <h1 className="title">Issue List</h1>
+
             <IssuesTable
                 selectedIssue={selectedIssue}
                 onSelectIssue={setSelectedIssue}
