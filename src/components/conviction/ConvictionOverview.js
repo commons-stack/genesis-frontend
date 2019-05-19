@@ -10,6 +10,7 @@ const ConvictionOverview = ({ issue, convictionList }) => {
     const convictionThreshold = 100000;
 
     const globalParameters = {
+        // effects the steepness of the curve
         alpha: 90,
         totalTime: 100
     };
