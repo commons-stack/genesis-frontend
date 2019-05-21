@@ -20,3 +20,12 @@ Some pointers that we used in our initial discussions on making this iteration
 Whenever we work on the project - we'll hang around in this room :
 
 - https://meet.jit.si/the-commons
+
+# Inspiration
+
+## Gitviction 
+
+A project during ETHParis - where we tried to create a votable list of github issues, read from Github.
+
+- https://github.com/gitviction/vicdao/blob/master/app/App.js
+
