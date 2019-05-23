@@ -42,6 +42,12 @@ const Navigation = () => {
                     <Link
                         className="navbar-item text"
                         to={{
+                            pathname: "/hatch"
+                        }}
+                    >Hatch Curve</Link>
+                    <Link
+                        className="navbar-item text"
+                        to={{
                             pathname: "/wallet"
                         }}
                     >Wallet</Link>
