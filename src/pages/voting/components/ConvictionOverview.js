@@ -1,5 +1,5 @@
 import React from 'react';
-import convictionLib from '../../math/convictionLib';
+import convictionLib from '../../../math/convictionLib';
 import ConvictionGraph from './ConvictionGraph';
 import ConvictionTimeline from './ConvictionTimeline';
 

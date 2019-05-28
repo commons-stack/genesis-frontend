@@ -10,7 +10,8 @@ module.exports = {
         filename: 'bundle.js'
     },
     devServer: {
-      contentBase: "./build",
+        contentBase: './build',
+        historyApiFallback: true
     },
     module: {
         rules: [
@@ -19,20 +20,20 @@ module.exports = {
                 exclude: /node_modules/,
                 use: ['babel-loader', 'eslint-loader']
             },
-          {
-            test: /\.scss/,
-            use: [
-              'style-loader',
-              'css-loader',
-              'sass-loader'
-            ],
-          },
+            {
+                test: /\.scss/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
+            }
 
-        ],
+        ]
     },
     plugins: [
-      new HtmlWebpackPlugin({
-        template: path.resolve('./index.html'),
-      }),
+        new HtmlWebpackPlugin({
+            template: path.resolve('./index.html')
+        })
     ]
 };

@@ -1,9 +1,11 @@
 import React from 'react';
 // import IssuesTable from './IssuesTable';
 // import ConvictionOverview from './conviction/ConvictionOverview';
-import Balance from './wallet/Balance';
+import Balance from './Balance';
+import { WalletContext } from '../../../context/Wallet';
 
-const BondingContainer = ({ wallet }) => {
+const Bonding = () => {
+    const { state } = React.useContext(WalletContext);
     // const [selectedIssue, setSelectedIssue] = React.useState(null);
     const buy = () => {
         // TODO
@@ -15,7 +17,7 @@ const BondingContainer = ({ wallet }) => {
         <div>
             <h1 className="title">Bonding curve buy/sell</h1>
             <p>Bonding curve comes here</p>
-            <Balance wallet={wallet} contractAddress="0x1234" />
+            <Balance wallet={state.wallet} contractAddress="0x1234" />
             <button
                 onClick={buy}
                 className=" button is-primary is-outlined is-small"
@@ -29,4 +31,4 @@ const BondingContainer = ({ wallet }) => {
     );
 };
 
-export default BondingContainer;
+export default Bonding;

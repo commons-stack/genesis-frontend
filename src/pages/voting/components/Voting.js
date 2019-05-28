@@ -1,6 +1,6 @@
 import React from 'react';
 import IssuesTable from './IssuesTable';
-import ConvictionOverview from './conviction/ConvictionOverview';
+import ConvictionOverview from './ConvictionOverview';
 
 // generate some value within (offset,range + offset)
 let d = 65;
@@ -40,7 +40,7 @@ const convictions = [
     }
 ];
 
-const IssuesContainer = () => {
+const Voting = () => {
     const [selectedIssue, setSelectedIssue] = React.useState(null);
 
     return (
@@ -51,9 +51,9 @@ const IssuesContainer = () => {
                 selectedIssue={selectedIssue}
                 onSelectIssue={setSelectedIssue}
             />
-            <ConvictionOverview issue={selectedIssue} convictionList={convictions} />
+            <ConvictionOverview issue={selectedIssue} convictionList={convictions}/>
         </div>
     );
 };
 
-export default IssuesContainer;
+export default Voting;
