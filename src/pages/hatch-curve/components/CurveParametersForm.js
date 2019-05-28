@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import CurveSlider from '../CurveSlider';
+import CurveSlider from './CurveSlider';
 
 const CurveParametersForm = ({
     onSubmit,

@@ -9,8 +9,8 @@ import React from 'react';
 const Launch = ({ name, curveParameters, communityParameters, initializeCommonsToken }) => {
     const [launching, setLaunchingFlag] = React.useState(false);
 
-    const launchCommons = async () => {
-        setLaunchingFlag();
+    const launchCommons = () => {
+        setLaunchingFlag(true);
 
         // const account = await web3.getAccount();
         // const reserveToken = await protocol.getReserveToken();

@@ -3,9 +3,9 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import HatchPhaseHeader from '../HatchPhaseHeader';
+import HatchPhaseHeader from './HatchPhaseHeader';
 import CurveParametersForm from './CurveParametersForm';
-import CurveVisualizer from '../../CurveVisualizer/CurveVisualizer';
+import CurveVisualizer from '../../../shared-components/CurveVisualizer/CurveVisualizer';
 
 const CurveParameters = ({ onNextPhase }) => {
     const [initialRaise, setInitialRaise] = React.useState(4000000);

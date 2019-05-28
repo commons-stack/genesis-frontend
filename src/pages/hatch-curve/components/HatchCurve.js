@@ -2,13 +2,13 @@
  * Created by will on 12/04/19.
  */
 import React from 'react';
-import CampaignParameters from '../components/HatchCurveComponents/CampaignParameters/CampaignParameters';
-import CurveParameters from '../components/HatchCurveComponents/CurveParameters/CurveParameters';
-import CommunityParameters from '../components/HatchCurveComponents/CommunityParameters/CommunityParameters';
-import Launch from '../components/HatchCurveComponents/Launch';
+import CampaignParameters from './CampaignParameters';
+import CurveParameters from './CurveParameters';
+import CommunityParameters from './CommunityParameters';
+import Launch from './Launch';
 
 
-const HatchCommonsView = () => {
+const HatchCurve = () => {
     // const { state, dispatch } = React.useContext(CommonsContext);
     // const viewContext = React.useContext(ViewContext);
     const [phase, setPhase] = React.useState(1);
@@ -70,11 +70,9 @@ const HatchCommonsView = () => {
         <div className="hatch-curve-page">
             <div className="hatch-container">
                 {getHatchPage()}
-
             </div>
         </div>
-
     );
 };
 
-export default HatchCommonsView;
+export default HatchCurve;
