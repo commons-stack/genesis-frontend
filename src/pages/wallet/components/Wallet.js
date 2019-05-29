@@ -20,7 +20,7 @@ const Wallet = () => {
             .get(`${config.faucetUrl}/donate/${address}`)
             .then(res => {
                 if (res && res.data && res.data.txhash) {
-                    // TODO : notify user of TXHash & monitor TX for balance change                   
+                    // TODO : notify user of TXHash & monitor TX for balance change
                 } else {
                     // TODO : notify user of error
                 }
