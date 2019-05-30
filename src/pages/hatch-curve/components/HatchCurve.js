@@ -25,7 +25,7 @@ const HatchCurve = () => {
             imageUrl: process.env.PUBLIC_URL + '/images/commons-header.png',
             contributorCount: 0,
             donationsCount: 0,
-            tokenName: "GIV",
+            tokenName: 'GIV',
             isHatchPhase: true,
             curve: commonsToken
         };
@@ -50,10 +50,11 @@ const HatchCurve = () => {
                     setPhase(3);
                 }}/>);
             case 3:
-                return (<CommunityParameters curveParameter={curveParameters} campaignParameters={campaignParameters} onNextPhase={(communityParameters) => {
-                    setCommunityParameters(communityParameters);
-                    setPhase(4);
-                }}/>);
+                return (<CommunityParameters curveParameter={curveParameters} campaignParameters={campaignParameters}
+                                             onNextPhase={(communityParameters) => {
+                                                 setCommunityParameters(communityParameters);
+                                                 setPhase(4);
+                                             }}/>);
             case 4:
                 return (<Launch
                     name={campaignParameters.name}
@@ -62,16 +63,15 @@ const HatchCurve = () => {
                     initializeCommonsToken={(commonsToken) => initializeTheCommons(commonsToken)}
                 />);
             default:
-                console.log("SHOULD NOT GET HERE BAD PHASE NUMBBER");
+                console.log('SHOULD NOT GET HERE BAD PHASE NUMBBER');
         }
     };
 
     return (
-        <div className="hatch-curve-page">
-            <div className="hatch-container">
-                {getHatchPage()}
-            </div>
+        <div className="container">
+            {getHatchPage()}
         </div>
+
     );
 };
 

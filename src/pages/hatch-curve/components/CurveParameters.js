@@ -25,7 +25,7 @@ const CurveParameters = ({ onNextPhase }) => {
         return temp / 100;
     };
 
-    return (<div className="curve-hatch-phase">
+    return (<div>
         <HatchPhaseHeader title="Set your curve parameters" subtitle="Set your curve parameters for your ‘hatch sale’.
 How much funding do you want to raise?"/>
         <CurveParametersForm
@@ -37,16 +37,21 @@ How much funding do you want to raise?"/>
             initialTokenPrice={initialTokenPrice}
             setInitialTokenPrice={setInitialTokenPrice}
         />
-        <div className="hatch-curve-vis">
-            <div className="initial-capital">
-                <span>{Math.floor(fundingPoolPercentage / 100 * initialRaise)} XDAI</span>
-                <p>Initial Capital Available</p>
+        <div className="container">
+
+            <div className="level-item">
+                <div className="tile is-vertical subtitle">
+                    <p>Initial Capital Available</p>
+                    <span>{Math.floor(fundingPoolPercentage / 100 * initialRaise)} XDAI</span>
+
+                </div>
+                <div className="tile is-vertical subtitle">
+                    <p>Post Hatch Price</p>
+                    <span className="dai">{calculatePostHatchPrice()} XDAI/Token</span>
+
+                </div>
             </div>
-            <div className="post-hatch">
-                <span className="dai">{calculatePostHatchPrice()} XDAI/Token</span>
-                <p>Post Hatch Price</p>
-            </div>
-            <CurveVisualizer theta={fundingPoolPercentage} initialRaise={initialRaise} startPrice={initialTokenPrice} />
+            <CurveVisualizer theta={fundingPoolPercentage} initialRaise={initialRaise} startPrice={initialTokenPrice}/>
         </div>
     </div>);
 };

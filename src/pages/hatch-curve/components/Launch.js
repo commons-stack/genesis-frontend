@@ -56,27 +56,29 @@ const Launch = ({ name, curveParameters, communityParameters, initializeCommonsT
 
     return (
         <div className="launch-commons">
-            <span>{name}</span>
-            <div className="curve-parameters">
-                <div>Initial Raise : <b>{curveParameters.initialRaise}</b> XDAI</div>
-                <div>Initial Price Point : <b>{curveParameters.initialTokenPrice}</b> XDAI</div>
-                <div>Funding Pool : <b>{curveParameters.fundingPoolPercentage * curveParameters.initialRaise}</b> XDAI</div>
-            </div>
-            <span className="community-parameters">
+            <span className="title">{name}</span>
+            <div className="level-item">
+                <div className="tile is-vertical subtitle">
+                    <div>Initial Raise : <b>{curveParameters.initialRaise}</b> XDAI</div>
+                    <div>Initial Price Point : <b>{curveParameters.initialTokenPrice}</b> XDAI</div>
+                    <div>Funding Pool : <b>{curveParameters.fundingPoolPercentage * curveParameters.initialRaise}</b> XDAI</div>
+                </div>
+            <span className="tile is-vertical subtitle">
                 <div>Minimum contribution : <b>{communityParameters.minimumContribution} XDAI</b></div>
                 <div>Hatch Sale Period : <b>{communityParameters.hatchSalePeriod}</b> Days</div>
                 <div>Proposal duration : <b>{communityParameters.proposalDuration}</b> Days</div>
                 <div>Exit fee : <b>{communityParameters.exitFee}</b> %</div>
-
             </span>
+            </div>
 
-            <div className="all-set">
-                <h1>All Set!</h1>
-                <p>Raise funds, engage communities, support projects, and incentivize action.</p>
+
+            <div>
+                <h1 className="title">All Set!</h1>
+                <p className="subtitle">Raise funds, engage communities, support projects, and incentivize action.</p>
                 {launching ? (
                     <div>lanching...</div>
                 ) : (
-                    <button onClick={launchCommons}>
+                    <button className="button is-primary" onClick={launchCommons}>
             Launch your Commons
                     </button>
                 )}

@@ -25,48 +25,47 @@ const CommunityParametersForm = ({ onNextPhase }) => {
 
     return (
         <form>
-            <div className="form-fields">
-                <FormField fieldStyle="launch-field" labelText="What is the minimum contribution a Hatcher can make?"
-                           value={minimumContribution} setValue={setMinimumContribution}/>
-                <FormField fieldStyle="launch-field" labelText="How long will your hatch sale be?"
-                           value={hatchSalePeriod} setValue={setHatchSalePeriod}/>
-                <FormField fieldStyle="launch-field" labelText="How long will proposals last?" value={proposalDuration}
-                           setValue={setProposalDuration}/>
+            <div className="control">
+                <FormField labelText="What is the minimum contribution a Hatcher can make?"
+                    value={minimumContribution} setValue={setMinimumContribution}/>
+                <FormField labelText="How long will your hatch sale be?"
+                    value={hatchSalePeriod} setValue={setHatchSalePeriod}/>
+                <FormField labelText="How long will proposals last?" value={proposalDuration}
+                    setValue={setProposalDuration}/>
 
-
-                <div className="radio-field">
-                    <label>What is your exit fee?</label>
-                    <div className="radio">
-                        <label>
+                <div className="field">
+                    <label className="label">What is your exit fee?</label>
+                    <div className="control">
+                        <label className="radio">
                             <input type="radio" value="option1" checked={exitFeeType === 1} onClick={(e) => {
                                 setExitFeeType(1);
                             }}/>
                             Low
                         </label>
-                    </div>
-                    <div className="radio">
-                        <label>
+                        <label className="radio">
                             <input type="radio" value="option2" checked={exitFeeType === 2} onClick={(e) => {
                                 setExitFeeType(2);
                             }}/>
                             Medium
                         </label>
-                    </div>
-                    <div className="radio">
-                        <label>
-                            <input type="radio" value="option3" checked={exitFeeType === 3} onClick={(e) => {
-                                setExitFeeType(3);
-                            }}/>
-                            High
-                        </label>
-                    </div>
+                        <div className="radio">
+                            <label>
+                                <input type="radio" value="option3" checked={exitFeeType === 3} onClick={(e) => {
+                                    setExitFeeType(3);
+                                }}/>
+                                High
+                            </label>
+                        </div>
 
+                    </div>
                 </div>
+
+
             </div>
 
             <div className="space-holder"/>
 
-            <button onClick={() => {
+            <button className="button is-primary" onClick={() => {
                 const exitFee = getExitFee();
                 onNextPhase({
                     minimumContribution, hatchSalePeriod, proposalDuration, exitFee

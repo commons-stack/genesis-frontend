@@ -32,7 +32,7 @@ const CurveParametersForm = ({
         return ((value - min) * 100 / 0.9);
     };
 
-    return (<form className="curve-parameter-form">
+    return (<form className="control">
         <CurveSlider
             labelName="How much money are you raising?"
             calculatePercentage={calculateInitialRaisePercentage}
@@ -57,8 +57,7 @@ const CurveParametersForm = ({
             setValueFromInputField={setInitialTokenPrice}
             isXDAI
         />
-        <div className="space-holder"/>
-        <button onClick={() => onSubmit()}>
+        <button className="button is-primary" onClick={() => onSubmit()}>
       Continue
         </button>
     </form>);

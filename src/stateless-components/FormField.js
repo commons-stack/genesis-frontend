@@ -5,11 +5,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Stateless UI Component
-const FormField = ({ fieldStyle, value, setValue, labelText }) => {
+const FormField = ({ value, setValue, labelText }) => {
     return (
-        <div className={fieldStyle ? 'field ' + fieldStyle : 'field'}>
-            <label>{labelText}</label>
-            <input value={value} onChange={(e) => setValue(e.target.value)} />
+        <div className="field">
+            <label className="label">{labelText}</label>
+            <input className="input" value={value} onChange={(e) => setValue(e.target.value)} />
         </div>
     );
 };
