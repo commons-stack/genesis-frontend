@@ -51,10 +51,10 @@ const HatchCurve = () => {
                 }}/>);
             case 3:
                 return (<CommunityParameters curveParameter={curveParameters} campaignParameters={campaignParameters}
-                                             onNextPhase={(communityParameters) => {
-                                                 setCommunityParameters(communityParameters);
-                                                 setPhase(4);
-                                             }}/>);
+                    onNextPhase={(communityParameters) => {
+                        setCommunityParameters(communityParameters);
+                        setPhase(4);
+                    }}/>);
             case 4:
                 return (<Launch
                     name={campaignParameters.name}

@@ -7,7 +7,6 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
 
-
 // Stateless UI Component
 const CurveSlider = ({ value, setValueFromSlider, setValueFromInputField, labelName, calculatePercentage, isXDAI }) => {
     return (

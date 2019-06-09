@@ -63,12 +63,12 @@ const Launch = ({ name, curveParameters, communityParameters, initializeCommonsT
                     <div>Initial Price Point : <b>{curveParameters.initialTokenPrice}</b> XDAI</div>
                     <div>Funding Pool : <b>{curveParameters.fundingPoolPercentage * curveParameters.initialRaise}</b> XDAI</div>
                 </div>
-            <span className="tile is-vertical subtitle">
-                <div>Minimum contribution : <b>{communityParameters.minimumContribution} XDAI</b></div>
-                <div>Hatch Sale Period : <b>{communityParameters.hatchSalePeriod}</b> Days</div>
-                <div>Proposal duration : <b>{communityParameters.proposalDuration}</b> Days</div>
-                <div>Exit fee : <b>{communityParameters.exitFee}</b> %</div>
-            </span>
+                <span className="tile is-vertical subtitle">
+                    <div>Minimum contribution : <b>{communityParameters.minimumContribution} XDAI</b></div>
+                    <div>Hatch Sale Period : <b>{communityParameters.hatchSalePeriod}</b> Days</div>
+                    <div>Proposal duration : <b>{communityParameters.proposalDuration}</b> Days</div>
+                    <div>Exit fee : <b>{communityParameters.exitFee}</b> %</div>
+                </span>
             </div>
 
 
