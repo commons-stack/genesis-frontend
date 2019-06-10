@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useAlert } from 'react-alert';
 
 const IssuesTable = ({ onSelectIssue, selectedIssue }) => {
     const [issues, setIssues] = useState([]);
+    const alert = useAlert();
 
     useEffect(() => {
         let isSubscribed = true;
@@ -77,7 +79,9 @@ const IssuesTable = ({ onSelectIssue, selectedIssue }) => {
                             <td>holding</td>
 
                             <td>
-                                <button>
+                                <button onClick={() => {
+                                    alert.info("This is not implemented yet");
+                                }}>
                                 Support
                                 </button>
                             </td>

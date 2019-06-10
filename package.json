@@ -18,6 +18,8 @@
     "ethers": "^4.0.27",
     "rc-slider": "^8.6.11",
     "react": "^16.8.6",
+    "react-alert": "^5.5.0",
+    "react-alert-template-basic": "^1.0.0",
     "react-chartjs-2": "^2.7.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
